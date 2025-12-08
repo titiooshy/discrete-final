@@ -21,15 +21,28 @@ inverse = (0, 4, 3, 2, 1, 5, 6, 7, 8, 9)
 perm_table = [
     (0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
     (1, 5, 7, 6, 2, 8, 3, 0, 9, 4),
-    (5,),
-    (8,),
-    (9,),
-    (4,),
-    (2,),
-    (7,),
+    (5, 8, 0, 3, 7, 9, 6, 1, 4, 2),
+    (8, 9, 1, 6, 0, 4, 3, 5, 2, 7),
+    (9, 4, 5, 3, 1, 2, 6, 8, 7, 0),
+    (4, 2, 8, 6, 5, 7, 3, 9, 0, 1),
+    (2, 7, 9, 3, 8, 0, 6, 4, 1, 5),
+    (7, 0, 4, 6, 9, 1, 3, 2, 5, 8),
 ]
 
 
 # With these finally set up we can write out the function
 def verhoeff(number, validate=True, terse=True, verbose=False):
-    """ """
+    """
+    Runs Verhoeff algorithm where it validates if the number that user inputted is valid
+
+    Args:
+        number: An integer, the number that is getting checked
+        validate: A boolean initially set to True
+        terse: A boolean initially set to True
+        verbose: A boolean initially set to False
+
+    Returns:
+        When in checksum mode it returns the expected correct checksum digit. When in validation
+        mode it returns True if the last digit checks correctly. When in terse mode or in a single
+        digit it will return True if it is valid (when the last digit is a correct check digit).
+    """
