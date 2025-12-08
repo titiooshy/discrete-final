@@ -46,3 +46,43 @@ def verhoeff(number, validate=True, terse=True, verbose=False):
         mode it returns True if the last digit checks correctly. When in terse mode or in a single
         digit it will return True if it is valid (when the last digit is a correct check digit).
     """
+
+    # Case checking for the verbose
+    if verbose:
+        print(
+            f"\n{'Validation' if validate else 'Check digit'}",
+            f"calculations for {number}:\n\n i  nᵢ  p[i,nᵢ]   c\n------------------",
+        )
+
+    # transform number list
+    c, dig = 0, list(str(number if validate else 10 * number))
+    for i, ni in enumerate(dig[::-1]):
+        p = perm_table[i % 8][int(ni)]
+        c = mult_table[c][p]
+        if verbose:
+            print(f"{i:2}  {ni}      {p}    {c}")
+    if verbose and not validate:
+        print(f"\ninv({c}) = {inverse[c]}")
+    if not terse:
+        print(
+            f"\nThe validation for '{number}' is {'correct' if c == 0 else 'incorrect'}."
+            if validate
+            else f"\nThe check digit for '{n}' is {inverse[c]}."
+        )
+    return c == 0 if validate else inverse[c]
+
+
+if __name__ == "__main__":
+
+    for n, va, t, ve in [
+        (236, False, False, True),
+        (2363, True, False, True),
+        (2369, True, False, True),
+        (12345, False, False, True),
+        (123451, True, False, True),
+        (123459, True, False, True),
+        (123456789012, False, False, False),
+        (1234567890120, True, False, False),
+        (1234567890129, True, False, False),
+    ]:
+        verhoeff(n, va, t, ve)
