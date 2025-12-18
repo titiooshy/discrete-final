@@ -10,4 +10,5 @@ This code is the short application of the Verhoeff Check Digit Algorithm being u
 
 **bank-note.py**- Contains code that checks if user inputtedd a valid or invalid bank note number. It has ui to validate a bank note number and one that generates a check digit given a banknote, user must choose 1 or 2. For either option choosen the user must write out numbers and the system will print the answer. 
 
+<img width="768" height="432" alt="image" src="https://github.com/user-attachments/assets/95ed4fdd-cf96-487c-b2c1-db968f535177" />
 
